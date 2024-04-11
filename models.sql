@@ -28,7 +28,7 @@ CREATE TABLE docentes (
 
 CREATE TABLE estudiantes (
   id_user INT PRIMARY KEY,
-  estado VARCHAR(15) NOT NULL,
+  estado VARCHAR(15) NOT NULL DEFAULT 'REGULAR',
   CHECK(
     estado IN ('REGULAR','IRREGULAR')
   ),
@@ -85,6 +85,8 @@ VALUES
 
 INSERT INTO docentes VALUES (5),(6),(7),(8),(9),(10),(11);
 
+INSERT INTO estudiantes VALUES (12),(13),(14),(15),(16),(17),(18),(19),(20),(21),(22),(23),(24);
+
 INSERT INTO materias(nombre_materia,nivel) VALUES ('Algebra I','A');
 INSERT INTO materias(nombre_materia,nivel) VALUES ('Calculo I','A'),
                                                   ('Ingles I','A'),
@@ -127,3 +129,14 @@ VALUES
     (8, 10, 'C', 'Verano'),
     (9, 11, 'D', 'Invierno'),
     (10, 5, 'A', 'Primer Semestre');
+
+CREATE TABLE Clase (
+  id_clase SERIAL,
+  id_estudiante INT,
+  id_asignatura INT,
+  estado VARCHAR(20) DEFAULT 'CURSANDO',
+  CHECK (
+    estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO')
+  ),
+  PRIMARY KEY (id_clase,id_estudiante,id_asignatura)
+);
