@@ -38,7 +38,7 @@ CREATE TABLE estudiantes (
 CREATE TABLE grupo_materia (
   id_materia INT,
   id_docente INT,
-  id_grupo_materia SERIAL,
+  id_grupo_materia SERIAL UNIQUE,
   grupo CHAR NOT NULL,
   gestion INT NOT NULL DEFAULT EXTRACT(YEAR FROM NOW()),
   periodo_academico VARCHAR(20),
@@ -57,14 +57,14 @@ CREATE TABLE grupo_materia (
 );
 
 CREATE TABLE Clase (
-  id_clase SERIAL,
+  id_clase SERIAL UNIQUE,
   id_estudiante INT,
-  id_grupo_materia INT,
-  estado VARCHAR(20) DEFAULT 'CURSANDO',
+  id_grupo_materia INT ,
+  estado VARCHAR(20) DEFAULT 'CURSANDO' NOT NULL,
   CHECK (
     estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO')
   ),
-  PRIMARY KEY (id_clase,id_estudiante,id_asignatura),
+  PRIMARY KEY (id_clase,id_estudiante,id_grupo_materia),
   FOREIGN KEY (id_grupo_materia) REFERENCES grupo_materia(id_grupo_materia),
   FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_user)
 );
@@ -103,12 +103,27 @@ INSERT INTO estudiantes VALUES (12),(13),(14),(15),(16),(17),(18),(19),(20),(21)
 INSERT INTO materias(nombre_materia,nivel) VALUES ('Algebra I','A');
 INSERT INTO materias(nombre_materia,nivel) VALUES ('Calculo I','A'),
                                                   ('Ingles I','A'),
+                                                  ('Fisica','A'),
+                                                  ('Introduccion a la programacion','A'),
                                                   ('Algebra II','B'),
                                                   ('Calculo II','B'),
                                                   ('Ingles II','B'),
+                                                  ('Elementos de Programacion','B'),
+                                                  ('Arquitectura de Computadoras','B'),
                                                   ('Programacion','C'),
                                                   ('Logica','C'),
-                                                  ('Teoria de Grafos','C');
+                                                  ('Teoria de Grafos','C'),
+                                                  ('Base de Datos I','D'),
+                                                  ('Programacion Funcional','D'),
+												                          ('Taller de Sistemas Operativos','E'),
+                                                  ('Sistemas de Informacion I','D'),
+                                                  ('Graficacion por Computadoras','E'),
+                                                  ('Sistemas de Informacion II','E'),
+												                          ('Calculo Numerico','C'),
+                                                  ('Probabilidad y Estadistica','D'),
+                                                  ('Metodos de Programacion','D'),
+                                                  ('Algoritmos Avanzados','D'),
+                                                  ('Base de Datos II','E');
 
 INSERT INTO grupo_materia (id_materia,id_docente,grupo,periodo_academico) VALUES (2,5,'A','Primer Semestre');
 INSERT INTO grupo_materia (id_materia, id_docente, grupo, periodo_academico)
