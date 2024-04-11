@@ -57,6 +57,8 @@ CREATE TABLE grupo_materia (
 );
 
 
+
+
 INSERT INTO usuarios (nombre,apellido_p,apellido_m) VALUES ('Kevin','Huayllas','Pinto');
 INSERT INTO usuarios (nombre, apellido_p, apellido_m, correo)
 VALUES
@@ -81,4 +83,47 @@ VALUES
     ('Natalia', 'Silva', 'Rivas', 'NataliaSilva@gmail.com'),
     ('Felipe', 'Rivas', 'Silva', 'FelipeRivas@gmail.com');
 
-INSERT INTO materias (nombre_materia,nivel) VALUES ('Algebra I','A');
+INSERT INTO docentes VALUES (5),(6),(7),(8),(9),(10),(11);
+
+INSERT INTO materias(nombre_materia,nivel) VALUES ('Algebra I','A');
+INSERT INTO materias(nombre_materia,nivel) VALUES ('Calculo I','A'),
+                                                  ('Ingles I','A'),
+                                                  ('Algebra II','B'),
+                                                  ('Calculo II','B'),
+                                                  ('Ingles II','B'),
+                                                  ('Programacion','C'),
+                                                  ('Logica','C'),
+                                                  ('Teoria de Grafos','C');
+
+INSERT INTO grupo_materia (id_materia,id_docente,grupo,periodo_academico) VALUES (2,5,'A','Primer Semestre');
+INSERT INTO grupo_materia (id_materia, id_docente, grupo, periodo_academico)
+VALUES
+    (2, 5, 'A', 'Primer Semestre'),
+    (3, 6, 'B', 'Segundo Semestre'),
+    (4, 7, 'C', 'Verano'),
+    (5, 8, 'D', 'Invierno'),
+    (6, 9, 'A', 'Primer Semestre'),
+    (7, 10, 'B', 'Segundo Semestre'),
+    (8, 11, 'C', 'Verano'),
+    (9, 5, 'D', 'Invierno'),
+    (10, 6, 'A', 'Primer Semestre'),
+    (2, 7, 'B', 'Segundo Semestre'),
+    (2, 8, 'C', 'Verano'),
+    (3, 9, 'D', 'Invierno'),
+    (4, 10, 'A', 'Primer Semestre'),
+    (5, 11, 'B', 'Segundo Semestre'),
+    (6, 5, 'C', 'Verano'),
+    (7, 6, 'D', 'Invierno'),
+    (8, 7, 'A', 'Primer Semestre'),
+    (9, 8, 'B', 'Segundo Semestre'),
+    (10, 9, 'C', 'Verano'),
+    (2, 10, 'D', 'Invierno'),
+    (10, 11, 'A', 'Primer Semestre'),
+    (3, 5, 'B', 'Segundo Semestre'),
+    (4, 6, 'C', 'Verano'),
+    (5, 7, 'D', 'Invierno'),
+    (6, 8, 'A', 'Primer Semestre'),
+    (7, 9, 'B', 'Segundo Semestre'),
+    (8, 10, 'C', 'Verano'),
+    (9, 11, 'D', 'Invierno'),
+    (10, 5, 'A', 'Primer Semestre');
