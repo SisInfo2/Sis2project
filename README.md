@@ -23,7 +23,7 @@ git checkout -b [nombre de la rama]
 ```
 git pull
 ```
-2. Asegurarse de estar en la rama que deseo trabajar y no en la rama main
+2. Asegurarse de estar en la rama que se desea trabajar y no en la rama main
 ```
 git branch
 ```
