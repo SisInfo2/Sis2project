@@ -56,6 +56,19 @@ CREATE TABLE grupo_materia (
   FOREIGN KEY (id_docente) REFERENCES docentes(id_user)
 );
 
+CREATE TABLE Clase (
+  id_clase SERIAL,
+  id_estudiante INT,
+  id_grupo_materia INT,
+  estado VARCHAR(20) DEFAULT 'CURSANDO',
+  CHECK (
+    estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO')
+  ),
+  PRIMARY KEY (id_clase,id_estudiante,id_asignatura),
+  FOREIGN KEY (id_grupo_materia) REFERENCES grupo_materia(id_grupo_materia),
+  FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_user)
+);
+
 
 
 
@@ -130,13 +143,3 @@ VALUES
     (9, 11, 'D', 'Invierno'),
     (10, 5, 'A', 'Primer Semestre');
 
-CREATE TABLE Clase (
-  id_clase SERIAL,
-  id_estudiante INT,
-  id_asignatura INT,
-  estado VARCHAR(20) DEFAULT 'CURSANDO',
-  CHECK (
-    estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO')
-  ),
-  PRIMARY KEY (id_clase,id_estudiante,id_asignatura)
-);
