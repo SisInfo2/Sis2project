@@ -35,6 +35,26 @@ CREATE TABLE estudiantes (
   FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
 );
 
+CREATE TABLE grupo_materia (
+  id_materia INT,
+  id_docente INT,
+  id_grupo_materia SERIAL,
+  grupo CHAR NOT NULL,
+  gestion INT NOT NULL DEFAULT EXTRACT(YEAR FROM NOW()),
+  periodo_academico VARCHAR(20),
+  nota_final INT NOT NULL DEFAULT 0,
+  estado VARCHAR(15) NOT NULL DEFAULT 'PENDIENTE',
+  CHECK(
+    grupo IN ('A','B','C','D') AND
+    gestion >= 2022 AND gestion <= EXTRACT(YEAR FROM NOW()) AND
+    periodo_academico IN('Primer Semestre','Segundo Semestre','Verano','Invierno') AND
+    nota_final >= 0 AND nota_final <= 100 AND
+    estado IN ('PENDIENTE','ABIERTA','EN CURSO', 'FINALIZADA')
+  ),
+  PRIMARY KEY (id_materia,id_docente,id_grupo_materia),
+  FOREIGN KEY (id_materia) REFERENCES materias(id_materia),
+  FOREIGN KEY (id_docente) REFERENCES docentes(id_user)
+);
 
 
 INSERT INTO usuarios (nombre,apellido_p,apellido_m) VALUES ('Kevin','Huayllas','Pinto');
