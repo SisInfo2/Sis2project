@@ -12,5 +12,15 @@ CREATE TABLE Usuarios (
 	)
 );
 
+CREATE TABLE Materias (
+  "id_materia" SERIAL PRIMARY KEY,
+  "nombre_materia" VARCHAR(30) UNIQUE NOT NULL,
+  "nivel" CHAR NOT NULL,
+  CHECK (
+    nivel IN ('A','B','C','D','E','F','G','H','I')
+  )
+);
 
-INSERT INTO Usuarios (nombre,apellido_p,apellido_m) VALUES ('Kevin','Huayllas','Pinto');
+
+INSERT INTO usuarios (nombre,apellido_p,apellido_m) VALUES ('Kevin','Huayllas','Pinto');
+INSERT INTO materias (nombre_materia,nivel) VALUES ('Algebra I','A');
