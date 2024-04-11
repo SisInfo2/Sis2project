@@ -21,6 +21,10 @@ CREATE TABLE Materias (
   )
 );
 
+CREATE TABLE "Docentes" (
+  "id_user" INT PRIMARY KEY
+);
+
 
 INSERT INTO usuarios (nombre,apellido_p,apellido_m) VALUES ('Kevin','Huayllas','Pinto');
 INSERT INTO materias (nombre_materia,nivel) VALUES ('Algebra I','A');
