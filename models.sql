@@ -3,8 +3,8 @@ CREATE TABLE usuarios (
   nombre VARCHAR(20) NOT NULL,
   apellido_p VARCHAR(25) NOT NULL,
   apellido_m VARCHAR(25),
-  correo VARCHAR(40),
-  contrasena VARCHAR(30) DEFAULT '123456' ,
+  correo VARCHAR(40) NOT NULL,
+  contrasena VARCHAR() NOT NULL DEFAULT md5('123456'::BYTEA),
 	CHECK( 
 		nombre ~ '[A-Z][a-z]+' AND
 		apellido_p ~ '[A-Z][a-z]+' AND
@@ -58,7 +58,7 @@ CREATE TABLE Clase (
   id_clase SERIAL UNIQUE,
   id_estudiante INT,
   id_grupo_materia INT ,
-  nota_final INT,
+  nota_final INT DEFAULT 0,
   estado VARCHAR(20) DEFAULT 'CURSANDO' NOT NULL,
   CHECK (
     estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO') AND 
@@ -154,4 +154,6 @@ INSERT INTO grupo_materia (id_materia,id_docente,grupo,gestion,periodo_academico
 (3,7,'B',2023,'Segundo Semestre'),
 (4,8,'C',2023,'Invierno'),
 (5,9,'D',2023,'Verano');	
+
+UPDATE usuarios SET contrasena = md5(contrasena::bytea);
 

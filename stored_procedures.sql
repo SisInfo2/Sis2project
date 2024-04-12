@@ -13,3 +13,4 @@ m.nivel, g.grupo FROM
 WHERE u.id_user = g.id_docente AND g.id_materia = m.id_materia ORDER BY m.nivel;
     
 end; $func$ LANGUAGE plpgsql;
+
