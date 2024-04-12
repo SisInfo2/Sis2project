@@ -27,9 +27,15 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         // Desactivar el JTextArea
         jTextArea3.setEnabled(false);
         jTextArea2.setEnabled(true);
+        
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setWrapStyleWord(true);
+        
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setWrapStyleWord(true);
     }
 
-    //Es necesario pasarle una lista de observaciones en caso de que haya varias
+    //Es necesario pasarle una lista de observaciones esto es en caso de que haya varias
     public void mostrarObservaciones(ArrayList<String> observaciones){
         for (String comentario : observaciones) {
             jTextArea3.append(comentario + "\n\n");
@@ -39,22 +45,22 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
     //si existe un comentario que hice se podra editar el ultimo comentario que he hecho, y se devolvera la edicion del ultimo
     //comentario para guardarlo en la base de datos
     public String editarComentario(ArrayList<String> misComentarios){
-        editarComentarioD.addActionListener(new ActionListener() {
+        editarComentarioE.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
-                if(editarComentarioD.getText().equalsIgnoreCase("Editar")){
+                if(editarComentarioE.getText().equalsIgnoreCase("Editar")){
                     String comentario = jTextArea3.getText();
                     for(int i = 0; i<misComentarios.size(); i++){
                         if(comentario.equals(misComentarios.get(i))){
-                            enviarComentarioD.setEnabled(false);
-                            editarComentarioD.setText("Re-comentar");
+                            enviarComentarioE.setEnabled(false);
+                            editarComentarioE.setText("Re-comentar");
                             jTextArea2.setText(jTextArea3.getText());
                         }
                     }
                 }else{
-                    if(editarComentarioD.getText().equalsIgnoreCase("Re-comentar")){
+                    if(editarComentarioE.getText().equalsIgnoreCase("Re-comentar")){
                         jTextArea3.append(jTextArea2.getText() + "\n\n");
-                        editarComentarioD.setText("Editar");
-                        enviarComentarioD.setEnabled(true);
+                        editarComentarioE.setText("Editar");
+                        enviarComentarioE.setEnabled(true);
                     }
                 }
             }
@@ -64,7 +70,7 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
     
     //retorna el comentario que se hizo para guardarlo en la base de datos
     public String hacerComentario(){
-        enviarComentarioD.addActionListener(new ActionListener() {
+        enviarComentarioE.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Cambiar el estado de habilitado del JTextArea cuando se haga clic en el JButton
                 jTextArea3.append(jTextArea2.getText() + "\n\n");
@@ -73,7 +79,7 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         
         return jTextArea2.getText();
     }
-    //para mostrar el trabajo a observar o comentar
+    //para mostrar el trabajo a observar o comentar en formato imagen .png o .jpg
     public void modificarImagen(Icon img){
         mostrarIMG.setIcon(img);
     }
@@ -88,8 +94,8 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        enviarComentarioD = new javax.swing.JButton();
-        editarComentarioD = new javax.swing.JButton();
+        enviarComentarioE = new javax.swing.JButton();
+        editarComentarioE = new javax.swing.JButton();
         mostrarIMG = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -104,14 +110,14 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
 
         jLabel1.setText("Ver Observaciones Docente");
 
-        enviarComentarioD.setText("Comentar");
-        enviarComentarioD.addActionListener(new java.awt.event.ActionListener() {
+        enviarComentarioE.setText("Comentar");
+        enviarComentarioE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarComentarioDActionPerformed(evt);
+                enviarComentarioEActionPerformed(evt);
             }
         });
 
-        editarComentarioD.setText("Editar");
+        editarComentarioE.setText("Editar");
 
         mostrarIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/documentoPre.png"))); // NOI18N
         mostrarIMG.setText("Pre-visualizacion");
@@ -139,29 +145,29 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(mostrarIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(editarComentarioD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(enviarComentarioD))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mostrarIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editarComentarioE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(enviarComentarioE)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,20 +177,23 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(mostrarIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editarComentarioD)
-                    .addComponent(enviarComentarioD))
-                .addGap(112, 112, 112))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarComentarioE)
+                            .addComponent(enviarComentarioE))
+                        .addGap(106, 106, 106))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mostrarIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,9 +219,9 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void enviarComentarioDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarComentarioDActionPerformed
+    private void enviarComentarioEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarComentarioEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_enviarComentarioDActionPerformed
+    }//GEN-LAST:event_enviarComentarioEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,8 +259,8 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton editarComentarioD;
-    private javax.swing.JButton enviarComentarioD;
+    private javax.swing.JButton editarComentarioE;
+    private javax.swing.JButton enviarComentarioE;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
