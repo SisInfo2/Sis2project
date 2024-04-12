@@ -35,6 +35,31 @@ CREATE TABLE estudiantes (
   FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
 );
 
+CREATE TABLE periodo_academico (
+	id_periodo SERIAL PRIMARY KEY,
+	year INT NOT NULL DEFAULT EXTRACT(YEAR FROM NOW()),
+	tipo INT NOT NULL,
+	activo BOOLEAN NOT NULL DEFAULT TRUE,
+	CHECK (
+	 	year >= 2022 AND year <= EXTRACT(YEAR FROM NOW())
+	),
+	FOREIGN KEY (tipo) REFERENCES tipo_periodo(id_tipo_periodo)
+	
+);
+
+
+CREATE TABLE periodo_academico (
+	id_periodo SERIAL PRIMARY KEY,
+	year INT NOT NULL DEFAULT EXTRACT(YEAR FROM NOW()),
+	tipo INT NOT NULL,
+	activo BOOLEAN NOT NULL DEFAULT TRUE,
+	CHECK (
+	 	year >= 2022 AND year <= EXTRACT(YEAR FROM NOW())
+	),
+	FOREIGN KEY tipo REFERENCES tipo_periodo(id_tipo_periodo)
+	
+);
+
 CREATE TABLE grupo_materia (
   id_materia INT,
   id_docente INT,
@@ -124,6 +149,9 @@ INSERT INTO materias(nombre_materia,nivel) VALUES ('Calculo I','A'),
                                                   ('Graficacion por Computadoras','E'),
                                                   ('Sistemas de Informacion II','E'),
                                                   ('Base de Datos II','E');
+
+
+INSERT INTO tipo_periodo (tipo) VALUES ('Primer Semestre'),('Segundo Semestre'),('Verano'),('Invierno');
 
 INSERT INTO grupo_materia (id_materia,id_docente,grupo,gestion,periodo_academico) VALUES
 (2,6,'A',2024,'Primer Semestre'),
