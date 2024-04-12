@@ -1,3 +1,9 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.Icon;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,8 +20,66 @@ public class observacionesTrabajoDocente extends javax.swing.JFrame {
      */
     public observacionesTrabajoDocente() {
         initComponents();
+        
+        jTextAreaVer.setEnabled(false);
+        jTextAreaCrear.setEnabled(true);
+        
+        jTextAreaVer.setLineWrap(true);
+        jTextAreaVer.setWrapStyleWord(true);
+        
+        jTextAreaCrear.setLineWrap(true);
+        jTextAreaCrear.setWrapStyleWord(true);
     }
 
+    //Es necesario pasarle una lista de observaciones esto es en caso de que haya varias
+    public void mostrarObservaciones(ArrayList<String> observaciones){
+        for (String comentario : observaciones) {
+            jTextAreaVer.append(comentario + "\n\n");
+        }    
+    }
+    
+    //si existe un comentario que hice se podra editar el ultimo comentario que he hecho, y se devolvera la edicion del ultimo
+    //comentario para guardarlo en la base de datos
+    public String editarComentario(ArrayList<String> misComentarios){
+        editarComentarioD.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                if(editarComentarioD.getText().equalsIgnoreCase("Editar")){
+                    String comentario = jTextAreaVer.getText();
+                    for(int i = 0; i<misComentarios.size(); i++){
+                        if(comentario.equals(misComentarios.get(i))){
+                            enviarComentarioD.setEnabled(false);
+                            editarComentarioD.setText("Re-comentar");
+                            jTextAreaCrear.setText(jTextAreaVer.getText());
+                        }
+                    }
+                }else{
+                    if(editarComentarioD.getText().equalsIgnoreCase("Re-comentar")){
+                        jTextAreaVer.append(jTextAreaCrear.getText() + "\n\n");
+                        editarComentarioD.setText("Editar");
+                        enviarComentarioD.setEnabled(true);
+                    }
+                }
+            }
+        });
+        return jTextAreaCrear.getText();
+    }
+    
+    //retorna el comentario que se hizo para guardarlo en la base de datos
+    public String hacerComentario(){
+        enviarComentarioD.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Cambiar el estado de habilitado del JTextArea cuando se haga clic en el JButton
+                jTextAreaVer.append(jTextAreaCrear.getText() + "\n\n");
+            }
+        });
+        
+        return jTextAreaCrear.getText();
+    }
+    //para mostrar el trabajo a observar o comentar en formato imagen .png o .jpg
+    public void modificarImagen(Icon img){
+        mostrarIMG.setIcon(img);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,12 +94,12 @@ public class observacionesTrabajoDocente extends javax.swing.JFrame {
         enviarComentarioD = new javax.swing.JButton();
         editarComentarioD = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaVer = new javax.swing.JTextArea();
         mostrarIMG = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextAreaCrear = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,9 +111,9 @@ public class observacionesTrabajoDocente extends javax.swing.JFrame {
 
         editarComentarioD.setText("Editar");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTextAreaVer.setColumns(20);
+        jTextAreaVer.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaVer);
 
         mostrarIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/documentoPre.png"))); // NOI18N
         mostrarIMG.setText("Pre-visualizacion");
@@ -63,9 +127,9 @@ public class observacionesTrabajoDocente extends javax.swing.JFrame {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        jTextAreaCrear.setColumns(20);
+        jTextAreaCrear.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaCrear);
 
         jLabel2.setText("Crear observación");
 
@@ -193,8 +257,8 @@ public class observacionesTrabajoDocente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextAreaCrear;
+    private javax.swing.JTextArea jTextAreaVer;
     private javax.swing.JLabel mostrarIMG;
     // End of variables declaration//GEN-END:variables
 }
