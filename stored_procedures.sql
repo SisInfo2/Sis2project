@@ -10,6 +10,6 @@ m.nivel, g.grupo FROM
 (
     SELECT grupo_materia.grupo, grupo_materia.id_docente,grupo_materia.id_materia FROM grupo_materia WHERE estado = 'ABIERTA'
 ) g, materias as m, usuarios as u
-WHERE u.id_user = g.id_docente AND g.id_materia = m.id_materia;
+WHERE u.id_user = g.id_docente AND g.id_materia = m.id_materia ORDER BY m.nivel;
     
 end; $func$ LANGUAGE plpgsql;
