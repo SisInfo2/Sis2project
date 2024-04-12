@@ -2,6 +2,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,50 +36,46 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         }    
     }
     
-    public void modificarComentario(ArrayList<String> misComentarios){
-
+    //si existe un comentario que hice se podra editar el ultimo comentario que he hecho, y se devolvera la edicion del ultimo
+    //comentario para guardarlo en la base de datos
+    public String editarComentario(ArrayList<String> misComentarios){
         editarComentarioD.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Cambiar el estado de habilitado del JTextArea cuando se haga clic en el JButton
-                jTextArea2.setEnabled(!jTextArea2.isEnabled());
-                
-                String comentario = jTextArea3.getText();
-                for(int i = 0; i<misComentarios.size(); i++){
-                    if(comentario.equals(misComentarios.get(i))){
-                        jTextArea2.setText(jTextArea3.getText());
+            public void actionPerformed(ActionEvent e) { 
+                if(editarComentarioD.getText().equalsIgnoreCase("Editar")){
+                    String comentario = jTextArea3.getText();
+                    for(int i = 0; i<misComentarios.size(); i++){
+                        if(comentario.equals(misComentarios.get(i))){
+                            enviarComentarioD.setEnabled(false);
+                            editarComentarioD.setText("Re-comentar");
+                            jTextArea2.setText(jTextArea3.getText());
+                        }
+                    }
+                }else{
+                    if(editarComentarioD.getText().equalsIgnoreCase("Re-comentar")){
+                        jTextArea3.append(jTextArea2.getText() + "\n\n");
+                        editarComentarioD.setText("Editar");
+                        enviarComentarioD.setEnabled(true);
                     }
                 }
             }
         });
-
+        return jTextArea2.getText();
     }
     
-    public void hacerComentario(){
+    //retorna el comentario que se hizo para guardarlo en la base de datos
+    public String hacerComentario(){
         enviarComentarioD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Cambiar el estado de habilitado del JTextArea cuando se haga clic en el JButton
-                jTextArea2.setEnabled(!jTextArea2.isEnabled());
-                
-                String comentario = jTextArea3.getText();
-                for(int i = 0; i<misComentarios.size(); i++){
-                    if(comentario.equals(misComentarios.get(i))){
-                        jTextArea2.setText(jTextArea3.getText());
-                    }
-                }
+                jTextArea3.append(jTextArea2.getText() + "\n\n");
             }
         });
+        
+        return jTextArea2.getText();
     }
-    
-    public void modificarImagen(){
-        // Crear el JLabel
-        JLabel etiquetaImagen = new JLabel();
-
-        // Cargar la imagen
-        ImageIcon iconoImagen = new ImageIcon("ruta/a/tu/imagen");
-
-        // Asignar el ImageIcon al JLabel
-        etiquetaImagen.setIcon(iconoImagen);
-
+    //para mostrar el trabajo a observar o comentar
+    public void modificarImagen(Icon img){
+        mostrarIMG.setIcon(img);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,6 +105,11 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
         jLabel1.setText("Ver Observaciones Docente");
 
         enviarComentarioD.setText("Comentar");
+        enviarComentarioD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarComentarioDActionPerformed(evt);
+            }
+        });
 
         editarComentarioD.setText("Editar");
 
@@ -207,6 +209,10 @@ public class observacionesTrabajoEstudiante extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void enviarComentarioDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarComentarioDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enviarComentarioDActionPerformed
 
     /**
      * @param args the command line arguments
