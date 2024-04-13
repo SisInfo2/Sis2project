@@ -21,6 +21,15 @@ CREATE TABLE materias (
   )
 );
 
+CREATE TABLE Dependencia_Materia (
+  id_materia INT,
+  id_dependencia INT,
+  FOREIGN KEY (id_dependencia)
+  REFERENCES Materias(id_materia),
+  FOREIGN KEY (id_materia) REFERENCES Materias(id_materia),
+  PRIMARY KEY(id_materia,id_dependencia)
+);
+
 CREATE TABLE docentes (
   id_user INT PRIMARY KEY,
   FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
@@ -35,16 +44,12 @@ CREATE TABLE estudiantes (
   FOREIGN KEY (id_user) REFERENCES usuarios(id_user)
 );
 
-CREATE TABLE periodo_academico (
-	id_periodo SERIAL PRIMARY KEY,
-	year INT NOT NULL DEFAULT EXTRACT(YEAR FROM NOW()),
-	tipo INT NOT NULL,
-	activo BOOLEAN NOT NULL DEFAULT TRUE,
+CREATE TABLE tipo_periodo (
+	id_tipo_periodo SERIAL PRIMARY KEY,
+	tipo VARCHAR(30) NOT NULL,
 	CHECK (
-	 	year >= 2022 AND year <= EXTRACT(YEAR FROM NOW())
-	),
-	FOREIGN KEY (tipo) REFERENCES tipo_periodo(id_tipo_periodo)
-	
+		tipo INT ('Primer Semestre', 'Segundo Semestre','Verano','Invierno')
+	)
 );
 
 
@@ -91,7 +96,8 @@ CREATE TABLE Clase (
   ),
   PRIMARY KEY (id_clase,id_estudiante,id_grupo_materia),
   FOREIGN KEY (id_grupo_materia) REFERENCES grupo_materia(id_grupo_materia),
-  FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_user)
+  FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_user),
+  FOREIGN KEY (periodo_academico) REFERENCES periodo_academico(id_periodo)
 );
 
 
@@ -185,3 +191,11 @@ INSERT INTO grupo_materia (id_materia,id_docente,grupo,gestion,periodo_academico
 
 UPDATE usuarios SET contrasena = md5(contrasena::bytea);
 
+INSERT INTO periodo_academico (year,tipo) VALUES 
+(2023,1),
+(2023,2),
+(2023,3),
+(2023,4),
+(2024,1),
+(2024,2),
+(2024,3),(2024,4);

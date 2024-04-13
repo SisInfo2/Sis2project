@@ -8,7 +8,11 @@ SELECT m.nombre_materia,
 CONCAT(u.nombre,' ',u.apellido_p,' ',u.apellido_m) AS nombre_docente,
 m.nivel, g.grupo FROM
 (
-    SELECT grupo_materia.grupo, grupo_materia.id_docente,grupo_materia.id_materia FROM grupo_materia WHERE estado = 'ABIERTA'
+    SELECT grupo_materia.grupo, grupo_materia.id_docente,grupo_materia.id_materia 
+    FROM grupo_materia 
+    WHERE periodo_academico = (
+        SELECT id_periodo FROM periodo_academico WHERE activo = True
+    )
 ) g, materias as m, usuarios as u
 WHERE u.id_user = g.id_docente AND g.id_materia = m.id_materia ORDER BY m.nivel;
     
