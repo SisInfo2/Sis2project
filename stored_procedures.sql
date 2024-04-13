@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION obtenerMateriasAbiertas(id_est INT) 
-returns table (id_grupo_materia,nombre_materia VARCHAR,nombre_docente TEXT,nivel CHAR,grupo CHAR) AS $func$
+returns table (id_grupo_materia INT,nombre_materia VARCHAR,nombre_docente TEXT,nivel CHAR,grupo CHAR) AS $func$
 begin
 
 return query
@@ -8,7 +8,7 @@ SELECT g.id_grupo_materia, m.nombre_materia,
 CONCAT(u.nombre,' ',u.apellido_p,' ',u.apellido_m) AS nombre_docente,
 m.nivel, g.grupo FROM
 (
-    SELECT grupo_materia.grupo, grupo_materia.id_docente,grupo_materia.id_materia 
+    SELECT grupo_materia.id_grupo_materia,grupo_materia.grupo, grupo_materia.id_docente,grupo_materia.id_materia 
     FROM grupo_materia 
     WHERE 
         id_materia IN (
@@ -37,17 +37,13 @@ end; $func$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION inscribirse(id_est INT,id_grupo INT)
-RETURNS TEXT AS $$
-DECLARE
-response TEXT := 'success';
+CREATE OR REPLACE PROCEDURE inscribirse(id_est INT,id_grupo INT)
+LANGUAGE plpgsql as $$
 begin
 
 INSERT INTO clase (id_estudiante,id_grupo_materia) VALUES (id_est,id_grupo);
-
-return response;
     
-end; $$ LANGUAGE plpgsql;
+end;$$;
 
 
 CREATE OR REPLACE FUNCTION obtenerMateriasEstudiante(id_est INT, tipo TEXT) 
