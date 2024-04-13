@@ -155,6 +155,13 @@ INSERT INTO materias(nombre_materia,nivel) VALUES ('Calculo I','A'),
                                                   ('Graficacion por Computadoras','E'),
                                                   ('Sistemas de Informacion II','E'),
                                                   ('Base de Datos II','E');
+                                                
+
+INSERT INTO dependencia_materia VALUES 
+(6,3),(5,2),(7,4),(38,36),
+(9,5),(8,38),(10,38),(46,6),
+(10,8),(49,8),(47,46),(48,8),(43,38),
+(42,39),(50,40),(44,48),(45,43);
 
 
 INSERT INTO tipo_periodo (tipo) VALUES ('Primer Semestre'),('Segundo Semestre'),('Verano'),('Invierno');
