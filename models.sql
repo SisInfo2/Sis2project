@@ -206,3 +206,6 @@ INSERT INTO periodo_academico (year,tipo) VALUES
 (2024,1),
 (2024,2),
 (2024,3),(2024,4);
+
+INSERT INTO clase (id_estudiante,id_grupo_materia,estado,nota_final) VALUES
+(2,59,'APROBADO',100),(2,56,'APROBADO',90),(2,57,'APROBADO',100),(2,58,'APROBADO',90);
