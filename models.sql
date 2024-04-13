@@ -92,7 +92,10 @@ CREATE TABLE Clase (
   estado VARCHAR(20) DEFAULT 'CURSANDO' NOT NULL,
   CHECK (
     estado IN ('CURSANDO','ABANDONADO','APROBADO','REPROBADO') AND 
-    nota_final >= 0 AND nota_final <= 100
+    nota_final >= 0 AND nota_final <= 100 AND
+    id_grupo_materia IN (
+      SELECT id_materia from obtenerMateriasAbiertas(id_estudiante)
+    )
   ),
   PRIMARY KEY (id_clase,id_estudiante,id_grupo_materia),
   FOREIGN KEY (id_grupo_materia) REFERENCES grupo_materia(id_grupo_materia),

@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION obtenerMateriasAbiertas(id_est INT) 
-returns table (nombre_materia VARCHAR,nombre_docente TEXT,nivel CHAR,grupo CHAR) AS $func$
+returns table (id_grupo_materia,nombre_materia VARCHAR,nombre_docente TEXT,nivel CHAR,grupo CHAR) AS $func$
 begin
 
 return query
 
-SELECT m.nombre_materia,
+SELECT g.id_grupo_materia, m.nombre_materia,
 CONCAT(u.nombre,' ',u.apellido_p,' ',u.apellido_m) AS nombre_docente,
 m.nivel, g.grupo FROM
 (
@@ -19,13 +19,13 @@ m.nivel, g.grupo FROM
             id_materia IN (
                 SELECT id_materia FROM dependencia_materia
                 WHERE id_dependencia IN (
-                    SELECT id_materia FROM obtenerMateriasAprobadas(2)
+                    SELECT id_materia FROM obtenerMateriasAprobadas(id_est)
                 )
             ))
 			AND id_materia NOT IN(
-				SELECT id_materia FROM obtenerMateriasEstudiante(2,'APROBADO')
+				SELECT id_materia FROM obtenerMateriasEstudiante(id_est,'APROBADO')
 			) AND id_materia NOT IN (
-                SELECT id_materia from obtenerMateriasEstudiante(2,'CURSANDO')
+                SELECT id_materia from obtenerMateriasEstudiante(id_est,'CURSANDO')
             )
         ) AND periodo_academico = (
         SELECT id_periodo FROM periodo_academico WHERE activo = True 
