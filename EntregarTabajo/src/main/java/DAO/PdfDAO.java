@@ -50,29 +50,7 @@ public class PdfDAO {
     }
 
 
-        /*Metodo agregar*/
-    public void Agregar_PdfVO(PdfVO vo) {
-        Conectar conec = new Conectar();
-        String sql = "INSERT INTO pdf (codigopdf, nombrepdf, archivopdf) VALUES(?, ?, ?);";
-        PreparedStatement ps = null;
-        try {
-            ps = conec.getConnection().prepareStatement(sql);
-            ps.setInt(1, vo.getCodigopdf());
-            ps.setString(2, vo.getNombrepdf());
-            ps.setBytes(3, vo.getArchivopdf());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-            try {
-                ps.close();
-                conec.desconectar();
-            } catch (Exception ex) {
-            }
-        }
-    }
+   
 
 }
 
