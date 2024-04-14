@@ -20,7 +20,7 @@ public class VerListaDeMaterias {
         // Establecer la conexión a la base de datos utilizando la clase ConexionBD
         try (Connection conn = ConexionBD.getConnection()) {
             // Llamar a la función de PostgreSQL
-            String sql = "SELECT * FROM obtenerMateriasAbiertas()";
+            String sql = "SELECT * FROM obtenerMateriasAbiertas(5)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql);
                  ResultSet rs = pstmt.executeQuery()) {
                 

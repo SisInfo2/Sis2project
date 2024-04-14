@@ -46,7 +46,7 @@ public class ListaDeMaterias extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 213, 56));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 190, 56));
 
         jTable1.setFont(new java.awt.Font("Georgia", 3, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -69,7 +69,7 @@ public class ListaDeMaterias extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 220, 60));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 190, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 890, 450));

@@ -1,3 +1,10 @@
+
+import ConexionBD.ConexionBD;
+import javax.swing.JOptionPane;
+import metodos.InscribirseMateria;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,6 +21,7 @@ public class Inscribirse extends javax.swing.JFrame {
      */
     public Inscribirse() {
         initComponents();
+         
     }
 
     /**
@@ -32,6 +40,8 @@ public class Inscribirse extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +63,7 @@ public class Inscribirse extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Materia", "Docente", "Nivel", "Horario"
+                "Materia", "Nivel", "Promedio"
             }
         ));
         jTable2.setShowGrid(true);
@@ -64,12 +74,22 @@ public class Inscribirse extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 0, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton1.setText("Inscrbirse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 60));
 
         jButton2.setBackground(new java.awt.Color(204, 0, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jButton2.setText("Retirar");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 210, 60));
+        jButton2.setText("Cargar Materia Estudiantes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 210, 60));
 
         jButton3.setBackground(new java.awt.Color(0, 204, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -78,6 +98,8 @@ public class Inscribirse extends javax.swing.JFrame {
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 210, 60));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 340));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(890, 454));
@@ -97,6 +119,14 @@ public class Inscribirse extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       InscribirseMateria.inscribirse(jTable2, (DefaultTableModel) jTable2.getModel());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      InscribirseMateria.cargarMateriasEstudiante((DefaultTableModel) jTable2.getModel());  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,5 +172,7 @@ public class Inscribirse extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
