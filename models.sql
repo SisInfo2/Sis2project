@@ -308,3 +308,10 @@ VALUES
     (61, 'Teorema Fundamental del Cálculo', 'Este teorema establece una conexión entre derivadas e integrales. Nos dice que la integral de una función derivable es igual a la diferencia entre los valores de la función en los extremos del intervalo de integración. Es una herramienta poderosa para calcular áreas y resolver problemas de movimiento.'),
     (61, 'Aplicaciones del Cálculo', 'Exploramos cómo el cálculo se aplica en situaciones del mundo real. Desde la modelización de crecimiento poblacional hasta la optimización de costos en ingeniería, el cálculo es una herramienta versátil. Estudiamos ejemplos prácticos y cómo resolver problemas utilizando técnicas de cálculo.');
 
+INSERT INTO material (id_grupo_materia, titulo, descripcion)
+VALUES
+    (42, 'Mecánica de un sistema de partículas', 'Este tema aborda el principio de Galileo, las ecuaciones de Newton y los teoremas de conservación del impulso lineal, impulso angular y energía. También se estudia el movimiento en un campo de fuerzas centrales.'),
+    (42, 'Ligaduras y ecuaciones de Lagrange', 'Explora las relaciones entre el hamiltoniano y la energía, así como la deducción variacional de las ecuaciones de Hamilton. También se introduce la teoría de Hamilton-Jacobi.'),
+    (42, 'Electrostática:leyes de Coulomb', 'Aprende sobre la carga y la fuerza eléctrica (ley de Coulomb), el campo eléctrico y la energía potencial eléctrica. También se exploran conceptos como el potencial eléctrico y el voltaje.'),
+    (42, 'Ondas electromagnéticas e interferencia', 'Introducción a las ondas electromagnéticas y estudio de la interferencia de ondas electromagnéticas. Estos conceptos son fundamentales en la óptica y las comunicaciones.'),
+    (42, 'Fotones y átomos en la física cuántica', 'Explora la naturaleza cuántica de los fotones, los átomos y los electrones. Se abordan temas como los números cuánticos, los orbitales y los núcleos.');
