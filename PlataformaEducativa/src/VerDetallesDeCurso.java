@@ -1,4 +1,6 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -24,6 +26,39 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void actualizarCursos(ArrayList<String> elementos){
+        actualizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { 
+                ArrayList<JButton> botones = new ArrayList<>();
+
+                //elementos de la lista en el ArrayList que recibe de parametro
+                for (int i = 0; i < elementos.size(); ++i) {
+                    JButton btn = new JButton(elementos.get(i));
+                    botones.add(btn);
+                }
+                //Icono estandar para cada elemento
+                for (JButton boton : botones) {
+                    ImageIcon icono = new ImageIcon("ruta/a/tu/imagen.jpg");
+                    boton.setIcon(icono);
+                }
+                //Texto vertical para cada boton que sera una materia o un curso
+                for (JButton boton : botones) {
+                    boton.setVerticalTextPosition(SwingConstants.BOTTOM);
+                }
+                JPanel panelDeBotones = new JPanel();
+                panelDeBotones.setLayout(new BoxLayout(panelDeBotones, BoxLayout.Y_AXIS));
+                //Añade los botones al panel
+                for (JButton boton : botones) {
+                    panelDeBotones.add(boton);
+                }
+                // Redibujar el panel para mostrar el nuevo botón
+                panelDeBotones.revalidate();
+                panelDeBotones.repaint();
+                //Añadir la lista de botnes al panel 
+                tuPanel.add(panelDeBotones);
+                }
+            });
+    }
     //elementos es una lista con los cursos a los que esta inscrito el estudiante
     public void cursosLista(ArrayList<String> elementos){
         ArrayList<JButton> botones = new ArrayList<>();
@@ -48,9 +83,6 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         for (JButton boton : botones) {
             panelDeBotones.add(boton);
         }
-        // Redibujar el panel para mostrar el nuevo botón
-        panelDeBotones.revalidate();
-        panelDeBotones.repaint();
         //Añadir la lista de botnes al panel 
         tuPanel.add(panelDeBotones);
     }
@@ -71,6 +103,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tuPanel = new javax.swing.JPanel();
         panelDeBotones = new javax.swing.JPanel();
+        actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1366, 768));
@@ -104,6 +137,8 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
             .addComponent(panelDeBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
+        actualizar.setText("Actualizar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,8 +159,9 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(actualizar)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +173,9 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addComponent(actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,6 +239,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconoMateria;
+    private javax.swing.JButton actualizar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList2;
