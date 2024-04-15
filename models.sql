@@ -133,6 +133,32 @@ CREATE TABLE material_archivo (
   PRIMARY KEY(id_material,id_archivo)
 );
 
+CREATE TABLE Tarea (
+  id_tarea SERIAL UNIQUE,
+  id_clase INT,
+  nota INT NOT NULL,
+  comentario_docente VARCHAR,
+  estado VARCHAR NOT NULL,
+  descripcion VARCHAR,
+  fecha_limite timestamp NOT NULL,
+  CHECK(
+    nota >= 100 AND nota <=100 AND
+    estado IN ('SIN ENTREGAR','ENTREGADO','RETRASO')
+  ),
+  PRIMARY KEY (id_tarea,id_clase),
+  FOREIGN KEY (id_clase) REFERENCES clase(id_clase)
+);
+
+
+CREATE TABLE Tarea_Archivo (
+  id_tarea INT,
+  id_archivo INT,
+  FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea),
+  FOREIGN KEY (id_archivo) REFERENCES Archivo(id_archivo),
+  PRIMARY KEY (id_tarea,id_archivo)
+);
+
+
 
 
 
