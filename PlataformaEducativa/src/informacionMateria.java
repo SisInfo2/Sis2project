@@ -18,6 +18,7 @@ public class informacionMateria extends javax.swing.JFrame {
      */
     public informacionMateria() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
