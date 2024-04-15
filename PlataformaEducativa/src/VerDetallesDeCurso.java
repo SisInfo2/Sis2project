@@ -1,3 +1,9 @@
+
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +22,23 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    public void cursosLista(){
+        ArrayList<JButton> botones = new ArrayList<>();
+
+        String nombres[] = {"Titulo1", "Titulo2", "Titulo3"};
+        for (int i = 0; i < nombres.length; ++i) {
+            JButton btn = new JButton(nombres[i]);
+            botones.add(btn);
+        }
+        for (JButton boton : botones) {
+            ImageIcon icono = new ImageIcon("ruta/a/tu/imagen.jpg");
+            boton.setIcon(icono);
+        }
+        for (JButton boton : botones) {
+            boton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
