@@ -4,6 +4,7 @@ begin
 
 return query
 
+
 SELECT g.id_grupo_materia, m.nombre_materia,
 CONCAT(u.nombre,' ',u.apellido_p,' ',u.apellido_m) AS nombre_docente,
 m.nivel, g.grupo FROM
