@@ -42,13 +42,15 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         for (JButton boton : botones) {
             boton.setVerticalTextPosition(SwingConstants.BOTTOM);
         }
-        
         JPanel panelDeBotones = new JPanel();
         panelDeBotones.setLayout(new BoxLayout(panelDeBotones, BoxLayout.Y_AXIS));
         //Añade los botones al panel
         for (JButton boton : botones) {
             panelDeBotones.add(boton);
         }
+        // Redibujar el panel para mostrar el nuevo botón
+        panelDeBotones.revalidate();
+        panelDeBotones.repaint();
         //Añadir la lista de botnes al panel 
         tuPanel.add(panelDeBotones);
     }
