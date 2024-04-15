@@ -66,3 +66,14 @@ WHERE one.id_grupo_materia = g.id_grupo_materia
 WHERE two.id_materia = m.id_materia;
 
 end; $func$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION obtenerMaterial(id_grupo INT) 
+returns table (titulo VARCHAR,descripcion VARCHAR) AS $func$
+begin
+
+return query
+
+SELECT titulo,descripcion from material where id_grupo_materia = id_grupo;
+
+end; $func$ LANGUAGE plpgsql;
