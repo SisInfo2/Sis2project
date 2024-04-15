@@ -102,3 +102,8 @@ SELECT tarea.id_tarea,tarea.descripcion from tarea WHERE id_clase=id_class and e
 
 end; $func$ LANGUAGE plpgsql;
 
+
+CREATE OR REPLACE PROCEDURE entregarTarea(id_tarea INT, archivo BYTEA){
+    
+}
+
