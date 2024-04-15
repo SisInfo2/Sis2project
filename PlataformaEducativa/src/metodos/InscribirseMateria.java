@@ -6,8 +6,9 @@ import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 import javax.swing.JTable;
+
 
 
 /*
@@ -20,62 +21,38 @@ import javax.swing.JTable;
  * @author kecha
  */
 public class InscribirseMateria {
-   public static void cargarMateriasEstudiante(DefaultTableModel materiasTableModel) {
-        try {
-            Connection con = ConexionBD.getConnection();
-            CallableStatement stmt = con.prepareCall("{Select * from obtenerMateriasEstudiante(?, ?) }");
-            stmt.setInt(1, 123); // Reemplazar 123 por el ID del estudiante
-            stmt.setString(2, "APROBADO"); // Reemplazar "APROBADO" por el tipo de materias a obtener
-            ResultSet rs = stmt.executeQuery();
+   public static DefaultTableModel cargarDatos() {
+        DefaultTableModel model = new DefaultTableModel();
+        //devolver lista de materias que esta cursando
+        // Establecer la conexión a la base de datos utilizando la clase ConexionBD
+        try (Connection conn = ConexionBD.getConnection()) {
+            // Llamar a la función de PostgreSQL
+            String sql = "SELECT * FROM obtenerMateriasAbiertas(12)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+                model.addColumn("id_grupo_materia"); 
+                model.addColumn("Nombre Materia");
+                model.addColumn("Nombre Docente");
+                model.addColumn("Nivel");
+                model.addColumn("Grupo");
 
-            // Limpiar tabla
-            materiasTableModel.setRowCount(0);
-
-            // Llenar la tabla con los resultados de la consulta
-            while (rs.next()) {
-                Object[] row = {
-                        rs.getInt("id_materia"),
+                // Llenar el modelo con los datos de la consulta
+                while (rs.next()) {
+                    model.addRow(new Object[]{
+                        rs.getString("id_grupo_materia"),
                         rs.getString("nombre_materia"),
+                        rs.getString("nombre_docente"),
                         rs.getString("nivel"),
-                        rs.getInt("promedio")
-                };
-                materiasTableModel.addRow(row);
+                        rs.getString("grupo")
+                    });
+                }
             }
-
-            // Cerrar conexión
-            ConexionBD.close(con, stmt, rs);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        
+        return model;
     }
-   
-   
-    public static void inscribirse(JTable jTable2, DefaultTableModel materiasTableModel) {
-        int selectedRow = jTable2.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione una materia para inscribirse.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        int idMateria = (int) materiasTableModel.getValueAt(selectedRow, 0);
-
-        try {
-            Connection con = ConexionBD.getConnection();
-            CallableStatement stmt = con.prepareCall("{ call inscribirse(?, ?) }");
-            stmt.setInt(1, 123); // Reemplazar 123 por el ID del estudiante
-            stmt.setInt(2, idMateria);
-            stmt.executeUpdate();
-
-            // Cerrar conexión
-            ConexionBD.closeConnection(con);
-
-            // Actualizar la tabla después de inscribirse
-            cargarMateriasEstudiante(materiasTableModel);
-
-            JOptionPane.showMessageDialog(null, "Te has inscrito correctamente en la materia.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al inscribirse en la materia.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    
+    
 }

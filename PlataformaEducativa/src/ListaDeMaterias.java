@@ -40,13 +40,13 @@ public class ListaDeMaterias extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jButton1.setText("Generar Materias");
+        jButton1.setText("Generar Materias Cursadas");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 190, 56));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 290, 56));
 
         jTable1.setFont(new java.awt.Font("Georgia", 3, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -54,7 +54,7 @@ public class ListaDeMaterias extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Materia", "Docente", "Nivel", "Grupo"
+                "Materia", "Nivel", "Promedio"
             }
         ));
         jTable1.setShowGrid(true);
@@ -69,7 +69,7 @@ public class ListaDeMaterias extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 190, 60));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 190, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 890, 450));
