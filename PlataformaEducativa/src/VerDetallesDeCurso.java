@@ -24,7 +24,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         initComponents();
     }
 
-    
+    //elementos es una lista con los cursos a los que esta inscrito el estudiante
     public void cursosLista(ArrayList<String> elementos){
         ArrayList<JButton> botones = new ArrayList<>();
 
@@ -73,7 +73,8 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1366, 768));
 
-        IconoMateria.setText("jLabel1");
+        IconoMateria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IconoMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconoVercurso.png"))); // NOI18N
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -143,7 +144,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(IconoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(IconoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
