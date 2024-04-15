@@ -19,7 +19,7 @@ import metodos.VerListaDeMaterias;
 public class Inscribirse extends javax.swing.JFrame {
 
     /**
-     * Creates new form Inscribirse
+     * Creates new form 
      */
     public Inscribirse() {
         initComponents();
