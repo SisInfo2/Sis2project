@@ -1,7 +1,9 @@
 
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /*
@@ -36,23 +38,19 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
             ImageIcon icono = new ImageIcon("ruta/a/tu/imagen.jpg");
             boton.setIcon(icono);
         }
+        //Texto vertical para cada boton que sera una materia o un curso
         for (JButton boton : botones) {
             boton.setVerticalTextPosition(SwingConstants.BOTTOM);
-        }
-        for (JButton boton : botones) {
-            tuPanel.add(boton);
-        }
-        for (JButton boton : botones) {
-            panelDeBotones.add(boton);
         }
         
         JPanel panelDeBotones = new JPanel();
         panelDeBotones.setLayout(new BoxLayout(panelDeBotones, BoxLayout.Y_AXIS));
+        //Añade los botones al panel
         for (JButton boton : botones) {
             panelDeBotones.add(boton);
         }
+        //Añadir la lista de botnes al panel 
         tuPanel.add(panelDeBotones);
-
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,8 +67,8 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        tuPanel = new javax.swing.JPanel();
+        panelDeBotones = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1366, 768));
@@ -88,19 +86,19 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
 
         jLabel3.setText("Lista de materias");
 
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        panelDeBotones.setLayout(new javax.swing.BoxLayout(panelDeBotones, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout tuPanelLayout = new javax.swing.GroupLayout(tuPanel);
+        tuPanel.setLayout(tuPanelLayout);
+        tuPanelLayout.setHorizontalGroup(
+            tuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelDeBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        tuPanelLayout.setVerticalGroup(
+            tuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelDeBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -121,7 +119,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -137,7 +135,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 31, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,8 +202,8 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel panelDeBotones;
+    private javax.swing.JPanel tuPanel;
     // End of variables declaration//GEN-END:variables
 }
