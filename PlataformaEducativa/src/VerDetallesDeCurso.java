@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import ConexionBD.ConexionBD;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -235,6 +236,10 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
                 new VerDetallesDeCurso().setVisible(true);
             }
         });
+        ArrayList<String> listaDeMaterias = new ArrayList<>();
+        
+        VerDetallesDeCurso llamar = new VerDetallesDeCurso();
+        llamar.cursosLista(listaDeMaterias);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
