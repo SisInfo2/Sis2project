@@ -138,7 +138,7 @@ CREATE TABLE Tarea (
   id_clase INT,
   nota INT NOT NULL,
   comentario_docente VARCHAR,
-  estado VARCHAR NOT NULL,
+  estado VARCHAR NOT NULL DEFAULT 'SIN ENTREGAR', 
   descripcion VARCHAR,
   fecha_limite timestamp NOT NULL,
   CHECK(
@@ -315,3 +315,20 @@ VALUES
     (42, 'Electrostática:leyes de Coulomb', 'Aprende sobre la carga y la fuerza eléctrica (ley de Coulomb), el campo eléctrico y la energía potencial eléctrica. También se exploran conceptos como el potencial eléctrico y el voltaje.'),
     (42, 'Ondas electromagnéticas e interferencia', 'Introducción a las ondas electromagnéticas y estudio de la interferencia de ondas electromagnéticas. Estos conceptos son fundamentales en la óptica y las comunicaciones.'),
     (42, 'Fotones y átomos en la física cuántica', 'Explora la naturaleza cuántica de los fotones, los átomos y los electrones. Se abordan temas como los números cuánticos, los orbitales y los núcleos.');
+
+
+call inscribirse(13,32);
+call inscribirse(13,33);
+call inscribirse(13,42);
+call inscribirse(14,32);
+call inscribirse(14,33);
+call inscribirse(14,42);
+call inscribirse(15,32);
+call inscribirse(15,33);
+call inscribirse(15,42);
+call inscribirse(16,32);
+call inscribirse(16,33);
+call inscribirse(16,42);
+call inscribirse(17,32);
+call inscribirse(17,33);
+call inscribirse(17,42);
