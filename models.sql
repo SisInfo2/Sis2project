@@ -142,7 +142,7 @@ CREATE TABLE Tarea (
   descripcion VARCHAR,
   fecha_limite timestamp NOT NULL,
   CHECK(
-    nota >= 100 AND nota <=100 AND
+    nota >= 0 AND nota <=100 AND
     estado IN ('SIN ENTREGAR','ENTREGADO','RETRASO')
   ),
   PRIMARY KEY (id_tarea,id_clase),

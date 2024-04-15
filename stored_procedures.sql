@@ -46,6 +46,18 @@ INSERT INTO clase (id_estudiante,id_grupo_materia) VALUES (id_est,id_grupo);
 end;$$;
 
 
+CREATE OR REPLACE PROCEDURE subirTarea(id_grupo INT,descript VARCHAR)
+    LANGUAGE plpgsql as $$
+    begin
+
+    INSERT INTO tarea(id_clase,descripcion) 
+	SELECT clase.id_clase, descript AS descripcion FROM tarea WHERE
+	clase.id_grupo_materia = id_grupo;
+      
+end;$$;
+
+
+
 CREATE OR REPLACE FUNCTION obtenerMateriasEstudiante(id_est INT, tipo TEXT) 
 returns table (id_materia INT,nombre_materia VARCHAR,nivel CHAR,promedio INT) AS $func$
 begin
