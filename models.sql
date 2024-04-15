@@ -103,6 +103,37 @@ CREATE TABLE Clase (
   FOREIGN KEY (periodo_academico) REFERENCES periodo_academico(id_periodo)
 );
 
+CREATE TABLE Formato (
+  id_formato SERIAL PRIMARY KEY,
+  nombre_formato VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE Archivo (
+  id_archivo SERIAL PRIMARY KEY,
+  formato INT,
+  nombre_archivo VARCHAR,
+  Contenido BYTEA NOT NULL
+);
+
+CREATE TABLE Material (
+  id_material SERIAL UNIQUE,
+  id_grupo_materia INT,
+  titulo VARCHAR(40) NOT NULL,
+  descripcion VARCHAR,
+  PRIMARY KEY (id_material,id_grupo_materia),
+  FOREIGN KEY (id_grupo_materia) REFERENCES grupo_materia(id_grupo_materia)
+
+);
+
+CREATE TABLE material_archivo (
+  id_material INT,
+  id_archivo INT,
+  FOREIGN KEY (id_material) REFERENCES Material(id_material),
+  FOREIGN KEY (id_archivo) REFERENCES Archivo(id_archivo),
+  PRIMARY KEY(id_material,id_archivo)
+);
+
+
 
 
 
