@@ -49,6 +49,7 @@ public class Inscribirse extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(890, 454));
         setPreferredSize(new java.awt.Dimension(890, 454));
+        setResizable(false);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(890, 454));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
