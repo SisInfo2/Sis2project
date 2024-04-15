@@ -59,14 +59,14 @@ end;$$;
 
 
 CREATE OR REPLACE FUNCTION obtenerMateriasEstudiante(id_est INT, tipo TEXT) 
-returns table (id_materia INT,nombre_materia VARCHAR,nivel CHAR,promedio INT) AS $func$
+returns table (id_grupo_materia INT,nombre_materia VARCHAR,nivel CHAR,promedio INT) AS $func$
 begin
 
 return query
 
-SELECT two.id_materia,m.nombre_materia, m.nivel,two.promedio 
+SELECT two.id_grupo_materia,m.nombre_materia, m.nivel,two.promedio 
 FROM (
-SELECT g.id_materia id_materia,one.promedio
+SELECT one.id_grupo_materia, id_materia,one.promedio
 FROM (
     SELECT id_grupo_materia,nota_final AS promedio
 	FROM clase 
@@ -89,3 +89,14 @@ return query
 SELECT titulo,descripcion from material where id_grupo_materia = id_grupo;
 
 end; $func$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION verTareas(id_estudiante INT,typo VARCHAR) 
+returns table (titulo VARCHAR,descripcion VARCHAR) AS $func$
+begin
+
+return query
+
+SELECT titulo,descripcion from material where id_grupo_materia = id_grupo;
+
+end; $func$ LANGUAGE plpgsql;
+
