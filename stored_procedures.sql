@@ -90,13 +90,15 @@ SELECT titulo,descripcion from material where id_grupo_materia = id_grupo;
 
 end; $func$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION verTareas(id_estudiante INT,typo VARCHAR) 
-returns table (titulo VARCHAR,descripcion VARCHAR) AS $func$
+
+
+CREATE OR REPLACE FUNCTION verTareas(id_class INT,tipo VARCHAR) 
+returns table (id_tarea INT,descripcion VARCHAR) AS $func$
 begin
 
 return query
 
-SELECT titulo,descripcion from material where id_grupo_materia = id_grupo;
+SELECT tarea.id_tarea,tarea.descripcion from tarea WHERE id_clase=id_class and estado=tipo;
 
 end; $func$ LANGUAGE plpgsql;
 
