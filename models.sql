@@ -332,3 +332,5 @@ call inscribirse(16,42);
 call inscribirse(17,32);
 call inscribirse(17,33);
 call inscribirse(17,42);
+
+INSERT INTO formato(nombre_formato) VALUES('pdf');
