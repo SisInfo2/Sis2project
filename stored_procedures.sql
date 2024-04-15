@@ -103,7 +103,14 @@ SELECT tarea.id_tarea,tarea.descripcion from tarea WHERE id_clase=id_class and e
 end; $func$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE PROCEDURE entregarTarea(id_tarea INT, archivo BYTEA){
-    
-}
+CREATE OR REPLACE PROCEDURE entregarTarea(id_tarea INT,nombre VARCHAR, content BYTEA)
+    LANGUAGE plpgsql as $$
+    DECLARE 
+    id_arch INT
+    begin
+    INSERT INTO archivo (nombre_archivo, contenido) VALUES (nombre,content) 
+    RETURNING id_archivo INTO id_arch;
+
+    INSERT INTO tarea_archivo VALUES(id_tarea,id_arch);  
+end;$$;
 
