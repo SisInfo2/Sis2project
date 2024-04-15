@@ -25,7 +25,7 @@ public class obtenerInfo {
         try (Connection conn = ConexionBD.getConnection()) {
             // Llamar a la función de PostgreSQL
             int valor = 1;
-            String sql = "SELECT * FROM obtenerMateriasAbiertas(17)";
+            String sql = "SELECT * FROM obtenerMaterial(32)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql);
                  ResultSet rs = pstmt.executeQuery()) {
                

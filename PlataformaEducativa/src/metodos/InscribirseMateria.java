@@ -27,7 +27,7 @@ public class InscribirseMateria {
         // Establecer la conexión a la base de datos utilizando la clase ConexionBD
         try (Connection conn = ConexionBD.getConnection()) {
             // Llamar a la función de PostgreSQL
-            String sql = "SELECT * FROM obtenerMateriasAbiertas(12)";
+            String sql = "SELECT * FROM obtenerMateriasAbiertas(13)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql);
                  ResultSet rs = pstmt.executeQuery()) {
                 model.addColumn("id_grupo_materia"); 
