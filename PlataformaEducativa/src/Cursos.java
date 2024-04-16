@@ -11,6 +11,8 @@
 import ConexionBD.ConexionBD;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -42,12 +44,20 @@ public class Cursos extends javax.swing.JFrame {
                 panel.setSize(100, 100);
                 panel.setBorder(BorderFactory.createEmptyBorder(20, 20,20, 20));
 
+                int id_grupo_materia = resultSet.getInt("id_grupo_materia");
                 String nombreMateria = resultSet.getString("nombre_materia");
                 String nivel = resultSet.getString("nivel");
+                    System.out.println(id_grupo_materia);
 
                 panel.add(new JLabel("Nombre: " + nombreMateria), BorderLayout.NORTH);
                 panel.add(new JLabel("Nivel: " + nivel), BorderLayout.CENTER);
                 JButton button =  new JButton("Ver detalles");
+                button.addActionListener(new ActionListener() { 
+                    public void actionPerformed(ActionEvent e) { 
+                        dispose();
+                        new VerDetallesDeCurso().setVisible(true);
+                    } 
+                } );
                 button.setBackground(new Color(0x0d6efd));
                 button.setForeground(Color.WHITE);
                 panel.add(button,BorderLayout.SOUTH);

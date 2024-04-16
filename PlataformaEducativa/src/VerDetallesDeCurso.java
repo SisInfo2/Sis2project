@@ -23,7 +23,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
     /**
      * Creates new form VerDetallesDeCurso
      */
-    public VerDetallesDeCurso() {
+    public VerDetallesDeCurso(int id_grupo_materia) {
         initComponents();
     }
 
@@ -233,7 +233,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerDetallesDeCurso().setVisible(true);
+                new VerDetallesDeCurso(32).setVisible(true);
             }
         });
         ArrayList<String> listaDeMaterias = new ArrayList<>();
