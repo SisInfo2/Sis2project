@@ -292,7 +292,7 @@ public class MostrarPDF extends javax.swing.JFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         String nombre = txtname.getText();
         ConexionBD s = new ConexionBD();
-        int codigo = s.auto_increment("SELECT MAX(codigopdf) FROM pdf;");
+//        int codigo = s.auto_increment("SELECT MAX(codigopdf) FROM pdf;");
         File ruta = new File(ruta_archivo);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
             guardar_pdf(1, nombre, ruta);

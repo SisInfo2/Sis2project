@@ -17,7 +17,6 @@ public class ListaDeMaterias extends javax.swing.JFrame {
      */
     public ListaDeMaterias() {
         initComponents();
-        
     }
 
     /**
