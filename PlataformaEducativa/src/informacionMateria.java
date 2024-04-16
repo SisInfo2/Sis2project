@@ -35,7 +35,7 @@ public class informacionMateria extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new GridLayout(20,1,20,0));
-        panelPrincipal.setPreferredSize(new Dimension(600,2000));
+        panelPrincipal.setPreferredSize(new Dimension(600,1000));
         jScrollPane2.getViewport().add(panelPrincipal);
         
         try (Connection conn = ConexionBD.getConnection()) {
