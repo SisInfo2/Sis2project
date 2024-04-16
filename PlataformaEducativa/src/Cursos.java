@@ -55,7 +55,7 @@ public class Cursos extends javax.swing.JFrame {
                 button.addActionListener(new ActionListener() { 
                     public void actionPerformed(ActionEvent e) { 
                         dispose();
-                        new VerDetallesDeCurso().setVisible(true);
+                        new informacionMateria(id_grupo_materia).setVisible(true);
                     } 
                 } );
                 button.setBackground(new Color(0x0d6efd));

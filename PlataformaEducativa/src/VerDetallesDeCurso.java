@@ -238,7 +238,7 @@ public class VerDetallesDeCurso extends javax.swing.JFrame {
         });
         ArrayList<String> listaDeMaterias = new ArrayList<>();
         
-        VerDetallesDeCurso llamar = new VerDetallesDeCurso();
+        VerDetallesDeCurso llamar = new VerDetallesDeCurso(32);
         llamar.cursosLista(listaDeMaterias);
     }
 

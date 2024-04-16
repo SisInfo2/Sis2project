@@ -18,14 +18,14 @@ import javax.swing.JTable;
  * @author kecha
  */
 public class obtenerInfo {
-     public static DefaultTableModel cargarDatos() {
+     public static DefaultTableModel cargarDatos(int id_grupo_materia) {
         DefaultTableModel model = new DefaultTableModel();
         //devolver lista de materias que esta cursando
         // Establecer la conexión a la base de datos utilizando la clase ConexionBD
         try (Connection conn = ConexionBD.getConnection()) {
             // Llamar a la función de PostgreSQL
             int valor = 1;
-            String sql = "SELECT * FROM obtenerMaterial(32)";
+            String sql = "SELECT * FROM obtenerMaterial( "+ id_grupo_materia + ")";
             try (PreparedStatement pstmt = conn.prepareStatement(sql);
                  ResultSet rs = pstmt.executeQuery()) {
                
