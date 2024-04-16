@@ -5,10 +5,10 @@
  */
 
 
-import Conexion.sql;
-import DAO.PdfDAO;
-import Tabla.Tabla_PdfVO;
-import VO.PdfVO;
+import ConexionBD.ConexionBD;
+import metodos.PdfDAO;
+import metodos.Tabla_PdfVO;
+import metodos.PdfVO;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author David
+ * @author Leandro Nicolas Perez Maldonado
  */
 public class MostrarPDF extends javax.swing.JFrame {
 
@@ -291,7 +291,7 @@ public class MostrarPDF extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         String nombre = txtname.getText();
-        sql s = new sql();
+        ConexionBD s = new ConexionBD();
         int codigo = s.auto_increment("SELECT MAX(codigopdf) FROM pdf;");
         File ruta = new File(ruta_archivo);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
