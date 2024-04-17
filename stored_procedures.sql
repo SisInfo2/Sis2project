@@ -60,26 +60,39 @@ end;$$;
 
 
 CREATE OR REPLACE FUNCTION obtenerMateriasEstudiante(id_est INT, tipo TEXT) 
-returns table (id_grupo_materia INT,id_materia INT,nombre_materia VARCHAR,nivel CHAR,promedio INT) AS $func$
+returns table (id_grupo_materia INT,
+              id_materia INT,
+              nombre_materia VARCHAR,
+              nivel CHAR,
+              promedio INT,
+              nombre_docente TEXT ) 
+AS $func$
 begin
 
 return query
 
-SELECT two.id_grupo_materia,two.id_materia,m.nombre_materia, m.nivel,two.promedio 
+SELECT three.id_grupo_materia,
+three.id_materia,
+three.nombre_materia, 
+three.nivel,three.promedio,
+CONCAT(u.nombre,' ',u.apellido_p,' ',u.apellido_m) AS nombre_docente
 FROM (
-SELECT one.id_grupo_materia, g.id_materia,one.promedio
-FROM (
-    SELECT clase.id_grupo_materia,clase.nota_final AS promedio
-	FROM clase 
-    WHERE estado = tipo::varchar AND
-    id_estudiante=id_est
-)one, grupo_materia as g
-WHERE one.id_grupo_materia = g.id_grupo_materia
-) two, materias AS m
-WHERE two.id_materia = m.id_materia;
+    SELECT two.id_grupo_materia, two.id_materia,two.promedio,two.id_docente,m.nivel,m.nombre_materia
+    FROM(
+        SELECT one.id_grupo_materia, g.id_materia,one.promedio,g.id_docente
+        FROM (
+            SELECT clase.id_grupo_materia,clase.nota_final AS promedio
+            FROM clase 
+            WHERE estado = tipo::varchar AND
+            id_estudiante=id_est
+        )one, grupo_materia as g
+        WHERE one.id_grupo_materia = g.id_grupo_materia
+        ) two, materias AS m
+    WHERE two.id_materia = m.id_materia
+    )three, usuarios as u
+    WHERE three.id_docente = u.id_user;
 
 end; $func$ LANGUAGE plpgsql;
-
 
 CREATE OR REPLACE FUNCTION obtenerMaterial(id_grupo INT) 
 returns table (titulo VARCHAR,descripcion VARCHAR) AS $func$

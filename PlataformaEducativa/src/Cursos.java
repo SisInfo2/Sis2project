@@ -38,7 +38,7 @@ public class Cursos extends javax.swing.JFrame {
             ResultSet resultSet = pstmt.executeQuery()) {
                 while (resultSet.next()) {
                 JPanel panel = new JPanel();
-                panel.setLayout(new BorderLayout());
+                panel.setLayout(new GridLayout(4,1,10,10));
                 panel.setBackground(Color.WHITE);
                 panel.setBorder(BorderFactory.createLineBorder(new Color(0x555555)));
                 panel.setSize(100, 100);
@@ -47,10 +47,12 @@ public class Cursos extends javax.swing.JFrame {
                 int id_grupo_materia = resultSet.getInt("id_grupo_materia");
                 String nombreMateria = resultSet.getString("nombre_materia");
                 String nivel = resultSet.getString("nivel");
+                String docente = resultSet.getString("nombre_docente");
                     System.out.println(id_grupo_materia);
 
-                panel.add(new JLabel("Nombre: " + nombreMateria), BorderLayout.NORTH);
-                panel.add(new JLabel("Nivel: " + nivel), BorderLayout.CENTER);
+                panel.add(new JLabel("Materia: " + nombreMateria));
+                panel.add(new JLabel("Nivel: " + nivel));
+                panel.add(new JLabel("Docente: " + docente));
                 JButton button =  new JButton("Ver detalles");
                 button.addActionListener(new ActionListener() { 
                     public void actionPerformed(ActionEvent e) { 
@@ -60,7 +62,7 @@ public class Cursos extends javax.swing.JFrame {
                 } );
                 button.setBackground(new Color(0x0d6efd));
                 button.setForeground(Color.WHITE);
-                panel.add(button,BorderLayout.SOUTH);
+                panel.add(button);
 
                 // Agregar ActionListener para manejar clics
 //                panel.addMouseListener(new VerCursos.MouseClickListener(nombreMateria));
