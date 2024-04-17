@@ -56,8 +56,8 @@ public class Cursos extends javax.swing.JFrame {
                 JButton button =  new JButton("Ver detalles");
                 button.addActionListener(new ActionListener() { 
                     public void actionPerformed(ActionEvent e) { 
-                        dispose();
                         new informacionMateria(id_grupo_materia).setVisible(true);
+                        dispose();
                     } 
                 } );
                 button.setBackground(new Color(0x0d6efd));
@@ -117,7 +117,7 @@ public class Cursos extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
+            .addGap(0, 411, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,13 +152,14 @@ public class Cursos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         new Inscribirse().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        
         new ListaDeMaterias().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

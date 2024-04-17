@@ -55,7 +55,8 @@ public class informacionMateria extends javax.swing.JFrame {
                        panel.setSize(new Dimension(600,300));
                        panel.setBackground(Color.WHITE);
                        panel.add(new JLabel(titulo));
-                       JLabel descripcionLabel = new JLabel(descripcion);
+                       JTextArea descripcionLabel = new JTextArea();
+                       descripcionLabel.append(descripcion);
                        descripcionLabel.setVisible(true);
                        descripcionLabel.setSize(new Dimension(200,150));
                        
@@ -136,8 +137,8 @@ public class informacionMateria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
         new Cursos().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
